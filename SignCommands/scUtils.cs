@@ -15,11 +15,7 @@ namespace SignCommands
 		/// <returns></returns>
         public static bool CanCreate(TSPlayer player, ScSign sign)
         {
-			if (sign.commands.Count == 0) return true;
-
-            var fails = sign.commands.Count(cmd => !cmd.Value.CanRun(player));
-
-            return fails != sign.commands.Values.Count;
+            return sign.commands.All(cmd => cmd.Value.CanRun(player));
         }
 
 		public static bool CanEdit(TSPlayer player, ScSign sign)
